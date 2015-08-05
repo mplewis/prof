@@ -1,0 +1,14 @@
+{
+  "name": "prof",
+  "version": "0.0.0",
+  "description": "profile stuff",
+  "main": "prof.js",
+  "scripts": {},
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^1.4.0",
+    "mathjs": "^2.0.1",
+    "phantomas": "^1.11.0"
+  }
+}
