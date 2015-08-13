@@ -28,8 +28,8 @@ function printStats(title, data) {
 
 console.log('Starting ' + count + ' requests.')
 
-async.timesSeries(count, function(num, callback) {
-  phantomas(url, options, function(err, json, results) {
+async.timesSeries(count, function (num, callback) {
+  phantomas(url, options, function (err, json, results) {
     if (err) {
       console.log('Request ' + num + ' failed')
       console.log(err)
@@ -39,15 +39,15 @@ async.timesSeries(count, function(num, callback) {
     callback(null, json.metrics)
   })
 
-}, function(err, data) {
+}, function (err, data) {
 
   if (err) {
     console.log(err)
   } else {
 
-    metrics.forEach(function(metric) {
+    metrics.forEach(function (metric) {
       gathered = []
-      data.forEach(function(item) {
+      data.forEach(function (item) {
         if (!item) return
         gathered.push(item[metric])
       })
