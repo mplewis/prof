@@ -24,11 +24,11 @@ function printStats(title, data) {
   console.log('    Max:     ' + max)
 }
 
-function startRequests(host, count) {
+function startRequests(site, count) {
   console.log('Starting ' + count + ' requests.')
 
   async.timesSeries(count, function (num, callback) {
-    phantomas(host, options, function (err, json, results) {
+    phantomas(site, options, function (err, json, results) {
       if (err) {
         console.log('Request ' + num + ' failed')
         console.log(err)
@@ -60,20 +60,22 @@ function startRequests(host, count) {
 function prof() {
   program
     .version(JSON.parse(fs.readFileSync('package.json')).version)
-    .option('-h, --host <h>', 'Host to profile')
+    .description('Profile a site')
+    .usage('./prof.js -s http://google.com -c 10')
+    .option('-s, --site <h>', 'Site to profile')
     .option('-c, --count <c>', 'Number of requests')
     .parse(process.argv)
 
-  if (!program.host) {
-    console.log('Please provide a host!')
+  if (!program.site) {
+    console.log('Please provide a site!')
     process.exit(1)
   }
 
-  var host = program.host
+  var site = program.site
   var count = program.count || 10
 
-  console.log('Profiling ' + host + '...')
-  startRequests(host, count)
+  console.log('Profiling ' + site + '...')
+  startRequests(site, count)
 
 }
 
